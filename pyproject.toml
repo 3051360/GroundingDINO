@@ -1,0 +1,39 @@
+[build-system]
+requires = [
+    "setuptools>=65",
+    "wheel",
+    "torch",          # Needed at build time for CUDA extension logic
+    "torchvision",    # Required in runtime dependencies
+    "numpy",          # Often needed by torch extensions
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "groundingdino"
+version = "0.1.0"
+description = "Open-set object detector"
+authors = [
+    { name = "International Digital Economy Academy" },
+    { name = "Shilong Liu" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "torch",
+    "torchvision",
+]
+
+[project.urls]
+Homepage = "https://github.com/IDEA-Research/GroundingDINO"
+
+[tool.setuptools]
+packages = ["groundingdino"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["configs", "tests"]
+
+[tool.setuptools.extension]
+# You still define extensions in setup.py, this tells setuptools to expect them
+# The actual logic is controlled in `setup.py -> get_extensions()`
